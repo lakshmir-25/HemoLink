@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemoLink - Search Donors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="glass-card" style="max-width: 800px;">
+            <h2>Find Blood Donors</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <select id="searchBloodGroup">
+                    <option value="" disabled selected>Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <input type="text" id="searchCity" placeholder="Enter City">
+                <button onclick="searchDonors()">Search</button>
+            </div>
+
+            <div id="resultsList" class="donor-list">
+                <!-- Data will be populated here -->
+                <p style="margin-top: 20px; color: #eee;">Select a blood group and city to find donors.</p>
+            </div>
+            <br>
+            <a href="home.html">Back to Home</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

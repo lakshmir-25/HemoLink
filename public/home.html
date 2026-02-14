@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemoLink - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script> <!-- Socket.io Client -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="glass-card" style="max-width: 800px;">
+            <h1>Welcome, <span id="userName">User</span></h1>
+            <p>Your blood type: <span id="userBloodGroup">-</span></p>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>Find a Donor</h3>
+                    <p>Search for available blood donors in your city.</p>
+                    <br>
+                    <button onclick="window.location.href='search.html'">Search Donors</button>
+                </div>
+                <!-- 
+                <div class="card">
+                    <h3>My Availability</h3>
+                    <p>Toggle your status.</p>
+                     <br>
+                    <button class="btn-secondary" onclick="alert('Feature coming soon!')">Update Status</button>
+                </div>
+                -->
+                <div class="card">
+                    <h3>Logout</h3>
+                    <p>Securely logout from your account.</p>
+                    <br>
+                    <button class="btn-secondary" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationArea"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
