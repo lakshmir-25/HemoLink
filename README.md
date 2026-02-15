@@ -28,4 +28,5 @@ HemoLink is a simple blood donor finding website built for a hackathon.
 - HTML
 - CSS
 - JavaScript
-- LocalStorage for storing donor data (Antigravity optional for cloud)
+- node + express
+- sqlite
