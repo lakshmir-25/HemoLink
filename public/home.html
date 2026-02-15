@@ -11,31 +11,34 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="glass-card" style="max-width: 800px;">
-            <h1>Welcome, <span id="userName">User</span></h1>
-            <p>Your blood type: <span id="userBloodGroup">-</span></p>
+    <div class="page-center">
+        <div class="container">
+            <div class="glass-card" style="max-width: 800px;">
+                <h1>Welcome, <span id="userName">User</span></h1>
+                <p>Your blood type: <span id="userBloodGroup">-</span></p>
 
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h3>Find a Donor</h3>
-                    <p>Search for available blood donors in your city.</p>
-                    <br>
-                    <button onclick="window.location.href='search.html'">Search Donors</button>
-                </div>
-                <!-- 
-                <div class="card">
-                    <h3>My Availability</h3>
-                    <p>Toggle your status.</p>
-                     <br>
-                    <button class="btn-secondary" onclick="alert('Feature coming soon!')">Update Status</button>
-                </div>
-                -->
-                <div class="card">
-                    <h3>Logout</h3>
-                    <p>Securely logout from your account.</p>
-                    <br>
-                    <button class="btn-secondary" id="logoutBtn">Logout</button>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Find a Donor</h3>
+                        <p>Search for available blood donors in your city.</p>
+                        <br>
+                        <button onclick="window.location.href='search.html'">Search Donors</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>My Profile</h3>
+                        <p>View details & update availability.</p>
+                        <br>
+                        <button class="btn-secondary" onclick="window.location.href='profile.html'">Update
+                            Profile</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Logout</h3>
+                        <p>Securely logout from your account.</p>
+                        <br>
+                        <button class="btn-secondary" id="logoutBtn">Logout</button>
+                    </div>
                 </div>
             </div>
         </div>

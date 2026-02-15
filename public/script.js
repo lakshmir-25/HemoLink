@@ -199,6 +199,73 @@ async function requestDonor(donorId) {
     }
 }
 
+// Profile Logic
+async function loadProfile() {
+    const user = getCurrentUser();
+    if (!user) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    try {
+        // Fetch fresh data
+        const res = await fetch(`/api/user/${user.id}`);
+        const data = await res.json();
+
+        if (data.error) {
+            alert('Error loading profile');
+            return;
+        }
+
+        document.getElementById('pName').innerText = data.name;
+        document.getElementById('pBlood').innerText = data.bloodGroup;
+        document.getElementById('pPhone').innerText = data.phone;
+        document.getElementById('pCity').innerText = data.city;
+
+        if (data.isDonor) {
+            const container = document.getElementById('availabilityContainer');
+            const checkbox = document.getElementById('pAvailability');
+
+            container.style.display = 'flex';
+            checkbox.checked = !!data.available;
+
+            // Add change listener
+            checkbox.addEventListener('change', async (e) => {
+                const newStatus = e.target.checked;
+                updateAvailability(user.id, newStatus);
+            });
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function updateAvailability(userId, isAvailable) {
+    const msg = document.getElementById('statusMsg');
+    msg.innerText = 'Updating...';
+
+    try {
+        const res = await fetch('/api/user/status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, available: isAvailable })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            msg.innerText = isAvailable ? 'You are now AVAILABLE for donations.' : 'You are currently UNAVAILABLE.';
+            msg.style.color = isAvailable ? '#4cc9f0' : '#e63946';
+        } else {
+            msg.innerText = 'Failed to update status.';
+        }
+    } catch (err) {
+        console.error(err);
+        msg.innerText = 'Error connecting to server.';
+    }
+}
+
 // Allow global access to search functions
 window.searchDonors = searchDonors;
 window.requestDonor = requestDonor;
+window.loadProfile = loadProfile;

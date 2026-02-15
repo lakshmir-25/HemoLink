@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HemoLink - Login</title>
+    <title>HemoLink - Connect using Blood</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <div class="glass-card">
-            <h1>HemoLink</h1>
-            <p>Connect. Donate. Save Lives.</p>
-            <br>
-            <form id="loginForm">
-                <input type="text" id="phone" placeholder="Phone Number" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <br>
-            <p>New to HemoLink? <a href="register.html">Register as Donor/User</a></p>
+
+    <!-- Hero / Landing Section -->
+    <section class="hero-section">
+        <div class="logo-container">
+            <!-- CSS-based Logo (Blood Drop + Link) -->
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                    d="M12 2.69l5.74 5.74c.9.9 1.41 2.12 1.41 3.39 0 2.65-2.15 4.8-4.8 4.8-1.55 0-2.94-.74-3.85-1.9A5.98 5.98 0 0 1 7.15 17c-2.65 0-4.8-2.15-4.8-4.8 0-1.27.51-2.49 1.41-3.39L9.5 3.11" />
+                <path d="M12 2.69L9.5 5.19" />
+                <circle cx="12" cy="13" r="3" fill="#e63946" stroke="none" />
+            </svg>
         </div>
-    </div>
+        <h1 class="hero-title">HemoLink</h1>
+        <p class="hero-subtitle">Connect. Donate. Save Lives.</p>
+
+        <button class="scroll-btn" onclick="document.getElementById('loginSection').scrollIntoView()">Get
+            Started</button>
+    </section>
+
+    <!-- Login Section -->
+    <section id="loginSection">
+        <div class="container">
+            <div class="glass-card">
+                <h2>Welcome Back</h2>
+                <p>Please login to continue</p>
+                <br>
+                <form id="loginForm">
+                    <input type="text" id="phone" placeholder="Phone Number" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <br>
+                <p>New to HemoLink? <a href="register.html">Register as Donor/User</a></p>
+            </div>
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
+
 </html>

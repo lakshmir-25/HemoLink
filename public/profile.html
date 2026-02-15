@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemoLink - My Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="page-center">
+        <div class="container">
+            <div class="glass-card" style="max-width: 600px;">
+                <h2>My Profile</h2>
+                <div id="profileDetails" style="text-align: left; margin: 20px 0;">
+                    <p><strong>Name:</strong> <span id="pName">Loading...</span></p>
+                    <p><strong>Blood Group:</strong> <span id="pBlood">...</span></p>
+                    <p><strong>Phone:</strong> <span id="pPhone">...</span></p>
+                    <p><strong>City:</strong> <span id="pCity">...</span></p>
+                </div>
+
+                <div class="toggle-container" id="availabilityContainer" style="display: none;">
+                    <label for="pAvailability">Available for Donation</label>
+                    <label class="switch">
+                        <input type="checkbox" id="pAvailability">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p id="statusMsg" style="font-size: 0.8rem; color: #eee; min-height: 20px;"></p>
+
+                <br>
+                <a href="home.html">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Inline init for profile to ensure it runs immediately
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+
+</html>

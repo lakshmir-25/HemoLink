@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
 app.post('/api/register', (req, res) => {
     const { name, bloodGroup, phone, password, city, gender, age, isDonor, available } = req.body;
     const stmt = db.prepare('INSERT INTO users (name, bloodGroup, phone, password, city, gender, age, isDonor, available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    stmt.run(name, bloodGroup, phone, password, city, gender, age, isDonor ? 1 : 0, available ? 1 : 0, function(err) {
+    stmt.run(name, bloodGroup, phone, password, city, gender, age, isDonor ? 1 : 0, available ? 1 : 0, function (err) {
         if (err) {
             if (err.message.includes('UNIQUE constraint failed')) {
                 return res.status(400).json({ error: 'Phone number already registered.' });
@@ -117,10 +117,10 @@ app.get('/api/donors', (req, res) => {
 // Request (Broadcast)
 app.post('/api/request', (req, res) => {
     const { requesterId, donorIds } = req.body;
-    
+
     // In a real app, you might look up requester info details
     // For now, we assume frontend sends necessary info or we just send a generic alert
-    
+
     // Broadcast to specific donors if they are online
     // In this simple prototype, we might try to find them in `connectedUsers`
     // Since we don't have a robust auth token system to map socket to user ID strictly effectively in this snippet without more client logic,
@@ -142,6 +142,33 @@ app.post('/api/request', (req, res) => {
     res.json({ success: true, notified: notifiedCount });
 });
 
+// Get User Details
+app.get('/api/user/:id', (req, res) => {
+    const userId = req.params.id;
+    db.get('SELECT id, name, bloodGroup, phone, city, gender, age, isDonor, available FROM users WHERE id = ?', [userId], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Database error.' });
+        }
+        if (row) {
+            res.json(row);
+        } else {
+            res.status(404).json({ error: 'User not found.' });
+        }
+    });
+});
+
+// Update Availability Status
+app.post('/api/user/status', (req, res) => {
+    const { userId, available } = req.body;
+    db.run('UPDATE users SET available = ? WHERE id = ?', [available ? 1 : 0, userId], function (err) {
+        if (err) {
+            return res.status(500).json({ error: 'Database error.' });
+        }
+        res.json({ success: true });
+
+        // Optional: Emit to socket that this user is updated (if we had a live list view)
+    });
+});
 
 server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
